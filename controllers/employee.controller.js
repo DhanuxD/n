@@ -1,7 +1,7 @@
 const express = require("express"),
   router = express.Router();
+  bodyParser = require("body-parser");
 
-bodyParser = require("body-parser");
 const db = require("../db");
 const service = require("../services/employee.service");
 //const { getAllEmployees } = require("../services/employee.service");
@@ -32,10 +32,10 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
+  console.log(req.body);
   await service.addEmployee(req.body);
   res.status(201).send("Created successfully.");
 });
-
 
 module.exports = router;

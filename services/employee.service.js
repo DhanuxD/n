@@ -1,4 +1,5 @@
 const db = require("../db");
+bodyParser = require("body-parser");
 
 module.exports.getAllEmployees = async () => {
   const [record] = await db.query("SELECT * FROM employee_info");
@@ -22,10 +23,9 @@ module.exports.deleteEmployeeById = async (id) => {
 };
 
 module.exports.addEmployee = async (obj) => {
-  console.log(obj.emp_name);
-  console.log(obj.emp_mobile);
+  // /console.log(`Employee name : ${obj.emp_name}`)
   const [{ affectedRows }] = await db.query(
-    "INSERT INTO employee_info (`emp_name`,`emp_mobile`) VALUES (?,?)",
+    " INSERT INTO employee_info (`emp_name`,`emp_mobile`) VALUES (?,?)",
     [obj.emp_name, obj.emp_mobile]
   );
   return affectedRows;
