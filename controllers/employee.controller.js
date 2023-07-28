@@ -1,6 +1,12 @@
-const express = require("express"),
-  router = express.Router();
-  bodyParser = require("body-parser");
+const express = require("express");
+const router = express.Router();
+const bodyParser = require("body-parser");
+const app = express();
+
+app.use(express.json);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json);
+
 
 const db = require("../db");
 const service = require("../services/employee.service");
@@ -32,8 +38,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-  console.log(req.body);
+router.post("/", async (req, res) => {
+  console.log(req.body.emp_name);
   await service.addEmployee(req.body);
   res.status(201).send("Created successfully.");
 });

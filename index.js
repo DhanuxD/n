@@ -1,6 +1,6 @@
 console.log("Application start");
-const express = require("express"),
-  app = express();
+const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 
 require("express-async-errors");
@@ -14,8 +14,6 @@ app.use("/api/employees", employeeRouter);
 app.use(express.json);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json);
-
-
 
 app.use((err, req, res, next) => {
   console.log(err);
